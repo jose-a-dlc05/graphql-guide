@@ -1,8 +1,30 @@
-import React from 'react'
-import { render } from 'react-dom'
-import './index.css'
-import App from './components/App'
+import React from 'react';
+import { render } from 'react-dom';
+import './index.css';
+import {
+	ApolloClient,
+	ApolloProvider,
+	InMemoryCache,
+	HttpLink,
+} from '@apollo/client';
+import App from './components/App';
 
-render(<App />, document.getElementById('root'))
+const link = new HttpLink({
+	uri: 'https://api.graphql.guide/graphql',
+});
 
-module.hot.accept()
+const cache = new InMemoryCache();
+
+const client = new ApolloClient({
+	link,
+	cache,
+});
+
+render(
+	<ApolloProvider client={client}>
+		<App />
+	</ApolloProvider>,
+	document.getElementById('root')
+);
+
+module.hot.accept();
