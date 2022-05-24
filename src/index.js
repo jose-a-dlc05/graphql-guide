@@ -11,6 +11,7 @@ import {
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
 import App from './components/App';
+import { BrowserRouter } from 'react-router-dom';
 
 const httpLink = new HttpLink({
 	uri: 'https://api.graphql.guide/graphql',
@@ -40,9 +41,11 @@ const client = new ApolloClient({
 });
 
 render(
-	<ApolloProvider client={client}>
-		<App />
-	</ApolloProvider>,
+	<BrowserRouter>
+		<ApolloProvider client={client}>
+			<App />
+		</ApolloProvider>
+	</BrowserRouter>,
 	document.getElementById('root')
 );
 
