@@ -1,13 +1,12 @@
-<<<<<<< HEAD
 export const withHyphens = (string) => string.replace(/ /g, '-');
 
 // generate paths of the form:
-// `/Forward`
-// `/Preface`
-// `/1-Understanding-GraphQL-through-REST/1-Introduction`
+// /Preface
+// /Introduction
+// /1-Understanding-GraphQL-through-REST/1-Introduction
 export const slugify = (chapter, section) => {
 	if (!section) {
-		if (chapter.sections.length) {
+		if (chapter.number !== null) {
 			// default to the first section
 			section = chapter.sections[0];
 		} else {
@@ -19,25 +18,3 @@ export const slugify = (chapter, section) => {
 	const sectionSlug = section.number + '-' + withHyphens(section.title);
 	return `/${chapterSlug}/${sectionSlug}`;
 };
-=======
-export const withHyphens = (string) => string.replace(/ /g, '-')
-
-// generate paths of the form:
-// /Preface
-// /Introduction
-// /1-Understanding-GraphQL-through-REST/1-Introduction
-export const slugify = (chapter, section) => {
-  if (!section) {
-    if (chapter.number !== null) {
-      // default to the first section
-      section = chapter.sections[0]
-    } else {
-      return '/' + withHyphens(chapter.title)
-    }
-  }
-
-  const chapterSlug = chapter.number + '-' + withHyphens(chapter.title)
-  const sectionSlug = section.number + '-' + withHyphens(section.title)
-  return `/${chapterSlug}/${sectionSlug}`
-}
->>>>>>> 4_1.0.0
